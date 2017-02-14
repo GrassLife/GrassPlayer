@@ -1,0 +1,4 @@
+name: GrassPlayer
+version: ${project.version}
+main: life.grass.grassplayer.Main
+authors: [GrassLife]
