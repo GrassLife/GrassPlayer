@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class GrassPlayer {
     private static Map<String, GrassPlayer> playerMap;
@@ -40,7 +41,7 @@ public class GrassPlayer {
     }
 
     public Player toPlayer() {
-        return Bukkit.getPlayer(uuid);
+        return Bukkit.getPlayer(UUID.fromString(uuid));
     }
 
     public int getStamina() {
@@ -55,6 +56,10 @@ public class GrassPlayer {
         return maxStamina;
     }
 
+    public void incrementStamina(int stamina) {
+        setStamina(this.stamina + stamina);
+    }
+
     public void setStamina(int stamina) {
         if (stamina < 0) {
             stamina = 0;
@@ -63,6 +68,7 @@ public class GrassPlayer {
         }
 
         this.stamina = stamina;
+        applyStaminaToFoodLevel();
     }
 
     public void setEffectiveStamina(int effectiveStamina) {
@@ -73,6 +79,7 @@ public class GrassPlayer {
         }
 
         this.effectiveStamina = effectiveStamina;
+        applyStaminaToFoodLevel();
     }
 
     public void setMaxStamina(int maxStamina) {
@@ -81,5 +88,10 @@ public class GrassPlayer {
         }
 
         this.maxStamina = maxStamina;
+    }
+
+    private void applyStaminaToFoodLevel() {
+        toPlayer().setFoodLevel((int) (20 * (float) stamina / effectiveStamina));
+        toPlayer().setSaturation(1);
     }
 }
