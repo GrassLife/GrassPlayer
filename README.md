@@ -1,12 +1,12 @@
 # GrassPlayer
 
 ## 使い方
-* インスタンスの取得
+* GrassPlayerの取得
 
 |メソッド|説明|
 |:-:|:-:|
-|static GrassPlayer#get(Player)|GrassPlayerのインスタンスを返す|
-|static GrassPlayer#get(String)|UUIDからGrassPlayerのインスタンスを返す|
+|static GrassPlayer#get(Player)|GrassPlayerを返す|
+|static GrassPlayer#get(String)|UUIDからGrassPlayerを返す|
 
 * 利用できるメソッド
 
