@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 public class GrassPlayer {
@@ -24,13 +25,20 @@ public class GrassPlayer {
         maxStamina = 100;
     }
 
-    public static GrassPlayer get(Player player) {
-        return get(player.getUniqueId().toString());
+    public static void create(Player player) {
+        String uuid = player.getUniqueId().toString();
+        playerMap.put(uuid, new GrassPlayer(uuid));
     }
 
-    public static GrassPlayer get(String uuid) {
+    public static Optional<GrassPlayer> find(Player player) {
+        return Optional.ofNullable(playerMap.get(player.getUniqueId().toString()));
+    }
+
+    public static GrassPlayer findOrCreate(Player player) {
+        String uuid = player.getUniqueId().toString();
+
         if (!playerMap.containsKey(uuid)) {
-            playerMap.put(uuid, new GrassPlayer(uuid));
+            create(player);
         }
 
         return playerMap.get(uuid);
