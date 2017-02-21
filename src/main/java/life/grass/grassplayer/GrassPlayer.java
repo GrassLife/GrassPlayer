@@ -91,7 +91,9 @@ public class GrassPlayer {
     }
 
     private void applyStaminaToFoodLevel() {
-        toPlayer().setFoodLevel((int) (20 * (float) stamina / effectiveStamina));
-        toPlayer().setSaturation(1);
+        Player player = toPlayer();
+        
+        player.setFoodLevel((int) (20 * (float) stamina / effectiveStamina));
+        player.setSaturation(1);
     }
 }
