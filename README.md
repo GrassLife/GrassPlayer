@@ -3,11 +3,10 @@
 ## 使い方
 * GrassPlayerの取得
 
-|メソッド|返り値|説明|
-|:-:|:-:|:-:|
-|static create(Player)|void|GrassPlayerを作成する|
-|static find(Player)|Optional\<GrassPlayer\>|Optional\<GrassPlayer\>を返す 存在しなければnullを返す|
-|static findOrCreate(Player)|GrassPlayer|GrassPlayerを返す 存在しなければ作成して返す|
+|メソッド|説明|
+|:-:|:-:|
+|static GrassPlayer#get(Player)|GrassPlayerを返す|
+|static GrassPlayer#get(String)|UUIDからGrassPlayerを返す|
 
 * 利用できるメソッド
 
