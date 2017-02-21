@@ -12,6 +12,7 @@ public class GrassPlayer {
 
     private String uuid;
     private int stamina, effectiveStamina, maxStamina;
+	private long lastRightClick = 0;
 
     static {
         playerMap = new HashMap<>();
@@ -94,4 +95,12 @@ public class GrassPlayer {
         toPlayer().setFoodLevel((int) (20 * (float) stamina / effectiveStamina));
         toPlayer().setSaturation(1);
     }
+
+	public long getLastRightClick() {
+		return lastRightClick;
+	}
+
+	public void setLastRightClick(long lastRightClick) {
+		this.lastRightClick = lastRightClick;
+	}
 }
