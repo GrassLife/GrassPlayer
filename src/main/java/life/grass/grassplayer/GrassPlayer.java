@@ -5,6 +5,8 @@ import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 
 public class GrassPlayer {
     private static Map<String, GrassPlayer> playerMap;
@@ -23,13 +25,20 @@ public class GrassPlayer {
         maxStamina = 100;
     }
 
-    public static GrassPlayer get(Player player) {
-        return get(player.getUniqueId().toString());
+    public static void create(Player player) {
+        String uuid = player.getUniqueId().toString();
+        playerMap.put(uuid, new GrassPlayer(uuid));
     }
 
-    public static GrassPlayer get(String uuid) {
+    public static Optional<GrassPlayer> find(Player player) {
+        return Optional.ofNullable(playerMap.get(player.getUniqueId().toString()));
+    }
+
+    public static GrassPlayer findOrCreate(Player player) {
+        String uuid = player.getUniqueId().toString();
+
         if (!playerMap.containsKey(uuid)) {
-            playerMap.put(uuid, new GrassPlayer(uuid));
+            create(player);
         }
 
         return playerMap.get(uuid);
@@ -40,7 +49,7 @@ public class GrassPlayer {
     }
 
     public Player toPlayer() {
-        return Bukkit.getPlayer(uuid);
+        return Bukkit.getPlayer(UUID.fromString(uuid));
     }
 
     public int getStamina() {
@@ -55,6 +64,10 @@ public class GrassPlayer {
         return maxStamina;
     }
 
+    public void incrementStamina(int stamina) {
+        setStamina(this.stamina + stamina);
+    }
+
     public void setStamina(int stamina) {
         if (stamina < 0) {
             stamina = 0;
@@ -63,6 +76,7 @@ public class GrassPlayer {
         }
 
         this.stamina = stamina;
+        applyStaminaToFoodLevel();
     }
 
     public void setEffectiveStamina(int effectiveStamina) {
@@ -73,6 +87,7 @@ public class GrassPlayer {
         }
 
         this.effectiveStamina = effectiveStamina;
+        applyStaminaToFoodLevel();
     }
 
     public void setMaxStamina(int maxStamina) {
@@ -81,5 +96,12 @@ public class GrassPlayer {
         }
 
         this.maxStamina = maxStamina;
+    }
+
+    private void applyStaminaToFoodLevel() {
+        Player player = toPlayer();
+
+        player.setFoodLevel((int) (20 * (float) stamina / effectiveStamina));
+        player.setSaturation(1);
     }
 }

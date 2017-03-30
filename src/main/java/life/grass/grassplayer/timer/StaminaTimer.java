@@ -8,10 +8,9 @@ public class StaminaTimer implements Runnable {
     @Override
     public void run() {
         Bukkit.getOnlinePlayers().forEach(player -> {
-            GrassPlayer grassPlayer = GrassPlayer.get(player);
+            GrassPlayer grassPlayer = GrassPlayer.findOrCreate(player);
 
-            grassPlayer.setStamina(grassPlayer.getStamina() + 5 * (player.isSprinting() ? -1 : 1));
-            player.setFoodLevel((int) (20 * (float) grassPlayer.getStamina() / grassPlayer.getEffectiveStamina()));
+            grassPlayer.incrementStamina(5 * (player.isSprinting() ? -1 : 1));
         });
     }
 }
