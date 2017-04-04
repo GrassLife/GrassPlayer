@@ -1,18 +1,17 @@
 package life.grass.grassplayer;
 
+import life.grass.grassplayer.achievement.GrassAchievement;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class GrassPlayer {
     private static Map<String, GrassPlayer> playerMap;
 
     private String uuid;
     private int stamina, effectiveStamina, maxStamina;
+    private Map<GrassAchievement, Integer> achievementMap;
 
     static {
         playerMap = new HashMap<>();
@@ -23,6 +22,9 @@ public class GrassPlayer {
         stamina = 100;
         effectiveStamina = 100;
         maxStamina = 100;
+        achievementMap = new HashMap<>();
+
+        Arrays.stream(GrassAchievement.values()).forEach(achievement -> achievementMap.put(achievement, 0));
     }
 
     public static void create(Player player) {
@@ -64,6 +66,14 @@ public class GrassPlayer {
         return maxStamina;
     }
 
+    public boolean hasOpenedAchievement(GrassAchievement achievement) {
+        return achievement.isOpened(getAchievementValue(achievement));
+    }
+
+    public int getAchievementValue(GrassAchievement achievement) {
+        return achievementMap.getOrDefault(achievement, 0);
+    }
+
     public void incrementStamina(int stamina) {
         setStamina(this.stamina + stamina);
     }
@@ -96,6 +106,18 @@ public class GrassPlayer {
         }
 
         this.maxStamina = maxStamina;
+    }
+
+    public void incrementAchievementValue(GrassAchievement achievement, int value) {
+        setAchievementValue(achievement, getAchievementValue(achievement) + value);
+    }
+
+    public void setAchievementValue(GrassAchievement achievement, int value) {
+        if (achievement.getMaxValue() < value) {
+            return;
+        }
+
+        achievementMap.put(achievement, value);
     }
 
     private void applyStaminaToFoodLevel() {
