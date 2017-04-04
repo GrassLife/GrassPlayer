@@ -14,7 +14,7 @@ public enum GrassAchievement {
 
             if (Listener.class.isAssignableFrom(clazz)) {
                 Main instance = Main.getInstance();
-                instance.getServer().getPluginManager().registerEvents(((Class<? extends Listener>) clazz).newInstance(), instance);
+                instance.getServer().getPluginManager().registerEvents((Listener) achievement, instance);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
