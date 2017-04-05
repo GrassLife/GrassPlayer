@@ -3,6 +3,8 @@ package life.grass.grassplayer.achievement;
 import life.grass.grassplayer.Main;
 import org.bukkit.event.Listener;
 
+import java.util.Arrays;
+
 public enum GrassAchievement {
     RIGHT_CLICKING(RightClicking.class);
 
@@ -31,5 +33,15 @@ public enum GrassAchievement {
 
     public boolean isOpened(int value) {
         return achievement.isOpened(value);
+    }
+
+    static GrassAchievement fromClass(Class<? extends Achievement> clazz) {
+        return Arrays.stream(GrassAchievement.values())
+                .filter(enumerator -> enumerator.getAchievement().getClass().equals(clazz))
+                .findFirst().orElseThrow(IllegalArgumentException::new);
+    }
+
+    private Achievement getAchievement() {
+        return this.achievement;
     }
 }

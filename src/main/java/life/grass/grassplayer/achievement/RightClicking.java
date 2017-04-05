@@ -40,7 +40,7 @@ public class RightClicking implements Achievement, Listener {
 
         Player player = event.getPlayer();
         GrassPlayer grassPlayer = GrassPlayer.findOrCreate(player);
-        GrassAchievement achievement = GrassAchievement.RIGHT_CLICKING;
+        GrassAchievement achievement = GrassAchievement.fromClass(this.getClass());
 
         grassPlayer.incrementAchievementValue(achievement, 1);
         player.sendMessage("[Achievement] Right-Clicking: "
