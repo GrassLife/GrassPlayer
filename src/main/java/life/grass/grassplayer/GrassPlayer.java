@@ -78,10 +78,16 @@ public class GrassPlayer {
         setStamina(this.stamina + stamina);
     }
 
+    public void incrementEffectiveStamina(int effectiveStamina) {
+        setEffectiveStamina(this.effectiveStamina + effectiveStamina);
+    }
+
     public void setStamina(int stamina) {
         if (stamina < 0) {
             stamina = 0;
-        } else if (effectiveStamina < stamina) {
+        }
+
+        if (effectiveStamina < stamina) {
             stamina = effectiveStamina;
         }
 
@@ -90,10 +96,16 @@ public class GrassPlayer {
     }
 
     public void setEffectiveStamina(int effectiveStamina) {
-        if (effectiveStamina < 0) {
-            effectiveStamina = 0;
-        } else if (maxStamina < effectiveStamina) {
+        if (effectiveStamina < 5) {
+            effectiveStamina = 5;
+        }
+
+        if (maxStamina < effectiveStamina) {
             effectiveStamina = maxStamina;
+        }
+
+        if (effectiveStamina < stamina) {
+            stamina = effectiveStamina;
         }
 
         this.effectiveStamina = effectiveStamina;
@@ -123,7 +135,7 @@ public class GrassPlayer {
     private void applyStaminaToFoodLevel() {
         Player player = toPlayer();
 
-        player.setFoodLevel((int) (20 * (float) stamina / effectiveStamina));
+        player.setFoodLevel((int) (20 * (float) stamina / maxStamina));
         player.setSaturation(1);
     }
 }

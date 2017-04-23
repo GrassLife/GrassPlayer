@@ -1,8 +1,5 @@
 package life.grass.grassplayer.achievement;
 
-import life.grass.grassplayer.Main;
-import org.bukkit.event.Listener;
-
 import java.util.Arrays;
 
 public enum GrassAchievement {
@@ -11,6 +8,8 @@ public enum GrassAchievement {
     private Achievement achievement;
 
     GrassAchievement(Class<? extends Achievement> clazz) {
+        /* under developing
+
         try {
             this.achievement = clazz.newInstance();
 
@@ -21,6 +20,8 @@ public enum GrassAchievement {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+        */
     }
 
     public String getName() {
@@ -38,7 +39,8 @@ public enum GrassAchievement {
     static GrassAchievement fromClass(Class<? extends Achievement> clazz) {
         return Arrays.stream(GrassAchievement.values())
                 .filter(enumerator -> enumerator.getAchievement().getClass().equals(clazz))
-                .findFirst().orElseThrow(IllegalArgumentException::new);
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     private Achievement getAchievement() {
