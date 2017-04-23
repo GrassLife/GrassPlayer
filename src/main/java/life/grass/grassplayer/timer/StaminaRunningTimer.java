@@ -16,8 +16,6 @@ public class StaminaRunningTimer implements Runnable {
             } else {
                 grassPlayer.incrementStamina(5);
             }
-
-            player.sendMessage(grassPlayer.getStamina() + " / " + grassPlayer.getEffectiveStamina());
         });
     }
 }
