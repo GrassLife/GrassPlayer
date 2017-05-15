@@ -132,7 +132,7 @@ public class GrassPlayer {
         achievementMap.put(achievement, value);
     }
 
-    private void applyStaminaToFoodLevel() {
+    public void applyStaminaToFoodLevel() {
         Player player = toPlayer();
 
         player.setFoodLevel((int) (20 * (float) stamina / maxStamina));
