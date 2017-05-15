@@ -24,7 +24,7 @@ public class RightClicking implements Achievement, Listener {
         return 50;
     }
 
-    @EventHandler(ignoreCancelled = true)
+    @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         if (event.getHand() == EquipmentSlot.OFF_HAND) {
             return;
