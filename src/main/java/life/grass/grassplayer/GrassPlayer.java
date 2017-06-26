@@ -19,9 +19,9 @@ public class GrassPlayer {
 
     private GrassPlayer(String uuid) {
         this.uuid = uuid;
-        stamina = 100;
-        effectiveStamina = 100;
-        maxStamina = 100;
+        stamina = 500;
+        effectiveStamina = 500;
+        maxStamina = 500;
         achievementMap = new HashMap<>();
 
         Arrays.stream(GrassAchievement.values()).forEach(achievement -> achievementMap.put(achievement, 0));

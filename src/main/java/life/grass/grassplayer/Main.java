@@ -1,5 +1,6 @@
 package life.grass.grassplayer;
 
+import life.grass.grassplayer.listener.PlayerStatisticIncrement;
 import life.grass.grassplayer.timer.StaminaExhaustingTimer;
 import life.grass.grassplayer.timer.StaminaRunningTimer;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,8 +13,10 @@ public final class Main extends JavaPlugin {
         super.onEnable();
         instance = this;
 
+        this.getServer().getPluginManager().registerEvents(new PlayerStatisticIncrement(), this);
+
         this.getServer().getScheduler().runTaskTimer(this, new StaminaRunningTimer(), 0, 10);
-        this.getServer().getScheduler().runTaskTimer(this, new StaminaExhaustingTimer(), 20 * 80, 20 * 80);
+        this.getServer().getScheduler().runTaskTimer(this, new StaminaExhaustingTimer(), 0, 10);
     }
 
     @Override

@@ -7,8 +7,8 @@ public class StaminaExhaustingTimer implements Runnable {
 
     @Override
     public void run() {
-        Bukkit.getOnlinePlayers().forEach(player ->
-            GrassPlayer.findOrCreate(player).incrementEffectiveStamina(-5)
-        );
+        Bukkit.getOnlinePlayers().forEach(player -> {
+            if (Math.random() < 0.05D) GrassPlayer.findOrCreate(player).incrementEffectiveStamina(-1);
+        });
     }
 }
