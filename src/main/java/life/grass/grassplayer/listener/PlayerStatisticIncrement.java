@@ -13,6 +13,11 @@ public class PlayerStatisticIncrement implements Listener {
     public void onPlayerStatisticIncrement(PlayerStatisticIncrementEvent event) {
         Player player = event.getPlayer();
 
-        if (event.getStatistic() == Statistic.JUMP) GrassPlayer.findOrCreate(player).incrementEffectiveStamina(-1);
+        if (event.getStatistic() == Statistic.JUMP) {
+            GrassPlayer grassPlayer = GrassPlayer.findOrCreate(player);
+
+            grassPlayer.incrementEffectiveStamina(-1);
+            grassPlayer.incrementStamina(-10);
+        }
     }
 }
