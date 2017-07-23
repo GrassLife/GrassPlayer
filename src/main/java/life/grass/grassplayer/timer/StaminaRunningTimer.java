@@ -10,7 +10,7 @@ public class StaminaRunningTimer implements Runnable {
         Bukkit.getOnlinePlayers().forEach(player -> {
             GrassPlayer grassPlayer = GrassPlayer.findOrCreate(player);
 
-            if (player.isSprinting()) {
+            if (player.isSprinting() && player.getVehicle() == null) {
                 grassPlayer.incrementStamina(-10);
                 grassPlayer.incrementEffectiveStamina(Math.random() < 0.3D ? -1 : 0);
             }
