@@ -10,7 +10,7 @@ public class GrassPlayer {
     private static Map<String, GrassPlayer> playerMap;
 
     private String uuid;
-    private int stamina, effectiveStamina, maxStamina;
+    private int stamina, effectiveStamina, maxStamina, mana;
     private Map<GrassAchievement, Integer> achievementMap;
 
     static {
@@ -22,6 +22,7 @@ public class GrassPlayer {
         stamina = 500;
         effectiveStamina = 500;
         maxStamina = 500;
+        mana = 0;
         achievementMap = new HashMap<>();
 
         Arrays.stream(GrassAchievement.values()).forEach(achievement -> achievementMap.put(achievement, 0));
@@ -64,6 +65,14 @@ public class GrassPlayer {
 
     public int getMaxStamina() {
         return maxStamina;
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    public boolean hasMana() {
+        return 0 < mana;
     }
 
     public boolean hasOpenedAchievement(GrassAchievement achievement) {
@@ -118,6 +127,18 @@ public class GrassPlayer {
         }
 
         this.maxStamina = maxStamina;
+    }
+
+    public void incrementMana(int mana) {
+        setMana(this.mana + mana);
+    }
+
+    public void setMana(int mana) {
+        if (mana < 0) {
+            mana = 0;
+        }
+
+        this.mana = mana;
     }
 
     @Deprecated
