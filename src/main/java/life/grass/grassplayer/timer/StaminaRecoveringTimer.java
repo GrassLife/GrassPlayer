@@ -3,7 +3,7 @@ package life.grass.grassplayer.timer;
 import life.grass.grassplayer.GrassPlayer;
 import org.bukkit.Bukkit;
 
-public class StaminaNormalTimer implements Runnable {
+public class StaminaRecoveringTimer implements Runnable {
 
     @Override
     public void run() {
