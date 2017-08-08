@@ -120,10 +120,12 @@ public class GrassPlayer {
         this.maxStamina = maxStamina;
     }
 
+    @Deprecated
     public void incrementAchievementValue(GrassAchievement achievement, int value) {
         setAchievementValue(achievement, getAchievementValue(achievement) + value);
     }
 
+    @Deprecated
     public void setAchievementValue(GrassAchievement achievement, int value) {
         if (achievement.getMaxValue() < value) {
             return;
