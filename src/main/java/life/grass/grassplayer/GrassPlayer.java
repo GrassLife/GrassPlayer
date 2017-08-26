@@ -9,6 +9,7 @@ import java.util.*;
 public class GrassPlayer {
     private static Map<String, GrassPlayer> playerMap;
 
+    private boolean isCasting;
     private String uuid;
     private int stamina, effectiveStamina, maxStamina, mana;
     private Map<GrassAchievement, Integer> achievementMap;
@@ -55,6 +56,10 @@ public class GrassPlayer {
         return Bukkit.getPlayer(UUID.fromString(uuid));
     }
 
+    public boolean isCasting() {
+        return isCasting;
+    }
+
     public int getStamina() {
         return stamina;
     }
@@ -81,6 +86,10 @@ public class GrassPlayer {
 
     public int getAchievementValue(GrassAchievement achievement) {
         return achievementMap.getOrDefault(achievement, 0);
+    }
+
+    public void setCasting(boolean isCasting) {
+        this.isCasting = isCasting;
     }
 
     public void incrementStamina(int stamina) {
