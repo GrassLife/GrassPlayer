@@ -41,8 +41,8 @@ public final class Main extends JavaPlugin {
     private void registerSchedulers() {
         BukkitScheduler scheduler = this.getServer().getScheduler();
 
-        scheduler.runTaskTimer(this, new ManaShowingTimer(), 0, 10);
-        scheduler.runTaskTimer(this, new ManaVaporizingTimer(), 0, 10);
+        scheduler.runTaskTimer(this, new ManaShowingTimer(), 0, 4);
+        scheduler.runTaskTimer(this, new ManaVaporizingTimer(), 0, 30);
         scheduler.runTaskTimer(this, new StaminaExhaustingTimer(), 0, 10);
         scheduler.runTaskTimer(this, new StaminaRecoveringTimer(), 0, 10);
         scheduler.runTaskTimer(this, new StaminaRowingTimer(), 0, 10);
