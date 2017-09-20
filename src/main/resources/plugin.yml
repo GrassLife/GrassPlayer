@@ -2,3 +2,15 @@ name: GrassPlayer
 version: ${project.version}
 main: life.grass.grassplayer.Main
 authors: [GrassLife]
+
+commands:
+  profile:
+    usage: /profile
+    permission: grassplayer.profile
+    permission-message: sorry, you do not have permission to do.
+
+permissions:
+  grassplayer.*:
+    default: op
+  grassplayer.profile:
+    default: true

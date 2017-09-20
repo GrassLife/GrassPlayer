@@ -1,5 +1,6 @@
 package life.grass.grassplayer;
 
+import life.grass.grassplayer.listener.PlayerExpChangeListener;
 import life.grass.grassplayer.listener.PlayerStatisticIncrement;
 import life.grass.grassplayer.timer.*;
 import org.bukkit.Particle;
@@ -17,8 +18,11 @@ public final class Main extends JavaPlugin {
         instance = this;
 
         this.getServer().getPluginManager().registerEvents(new PlayerStatisticIncrement(), this);
+        this.getServer().getPluginManager().registerEvents(new PlayerExpChangeListener(), this);
 
         registerSchedulers();
+
+        getCommand("profile").setExecutor(new PlayerCommandExecutor());
     }
 
     @Override
@@ -44,7 +48,6 @@ public final class Main extends JavaPlugin {
         scheduler.runTaskTimer(this, new ManaShowingTimer(), 0, 4);
         scheduler.runTaskTimer(this, new ManaVaporizingTimer(), 0, 30);
         scheduler.runTaskTimer(this, new StaminaExhaustingTimer(), 0, 10);
-        scheduler.runTaskTimer(this, new StaminaRecoveringTimer(), 0, 10);
         scheduler.runTaskTimer(this, new StaminaRowingTimer(), 0, 10);
         scheduler.runTaskTimer(this, new StaminaRunningTimer(), 0, 10);
     }
