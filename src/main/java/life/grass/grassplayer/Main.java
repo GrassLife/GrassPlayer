@@ -22,7 +22,9 @@ public final class Main extends JavaPlugin {
 
         registerSchedulers();
 
-        getCommand("profile").setExecutor(new PlayerCommandExecutor());
+        PlayerCommandExecutor command = new PlayerCommandExecutor();
+        getCommand("profile").setExecutor(command);
+        getCommand("player").setExecutor(command);
     }
 
     @Override

@@ -8,6 +8,10 @@ commands:
     usage: /profile
     permission: grassplayer.profile
     permission-message: sorry, you do not have permission to do.
+  player:
+    usage: /player
+    permission: grassplayer.op
+    permission-message: sorry, you do not have permission to do.
 
 permissions:
   grassplayer.*:

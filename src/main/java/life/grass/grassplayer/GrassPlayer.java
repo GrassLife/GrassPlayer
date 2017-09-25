@@ -20,9 +20,9 @@ public class GrassPlayer {
 
     private GrassPlayer(String uuid) {
         this.uuid = uuid;
-        stamina = 500;
-        effectiveStamina = 500;
-        maxStamina = 500;
+        maxStamina = getRawStatus(StatusType.VITALITY) * 10 + 500;
+        stamina = maxStamina;
+        effectiveStamina = maxStamina;
         mana = 0;
         achievementMap = new HashMap<>();
 
@@ -169,5 +169,23 @@ public class GrassPlayer {
 
         player.setFoodLevel((int) (20 * (float) stamina / maxStamina));
         player.setSaturation(1);
+    }
+
+    public void levelUp() {
+        Player player = toPlayer();
+        setMaxStamina(getRawStatus(StatusType.VITALITY) * 10 + 500);
+    }
+
+    public void forceSettingLevel(int level) {
+        toPlayer().setLevel(level);
+        levelUp();
+    }
+
+    public int getRawStatus(StatusType type) {
+        return (int) ((double) toPlayer().getLevel() * type.getLevelRate());
+    }
+
+    public int getStatus(StatusType type) {
+        return getRawStatus(type);
     }
 }
