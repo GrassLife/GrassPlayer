@@ -16,7 +16,7 @@ public class PlayerStatisticIncrement implements Listener {
         if (event.getStatistic() == Statistic.JUMP) {
             GrassPlayer grassPlayer = GrassPlayer.findOrCreate(player);
 
-            grassPlayer.incrementEffectiveStamina(-1);
+            grassPlayer.incrementEffectiveStamina(Math.random() < 0.5D ? -1 : 0);
             grassPlayer.incrementStamina(-10);
         }
     }

@@ -12,7 +12,7 @@ public class StaminaRunningTimer implements Runnable {
 
             if (player.isSprinting() && player.getVehicle() == null) {
                 grassPlayer.incrementStamina(-20);
-                grassPlayer.incrementEffectiveStamina(Math.random() < 0.3D ? -1 : 0);
+                grassPlayer.incrementEffectiveStamina(Math.random() < 0.2D ? -1 : 0);
             } else {
                 grassPlayer.incrementStamina(25);
             }
