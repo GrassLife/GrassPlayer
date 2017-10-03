@@ -1,12 +1,12 @@
 package life.grass.grassplayer;
 
 import life.grass.grassplayer.listener.PlayerStatisticIncrement;
-import life.grass.grassplayer.timer.*;
-import org.bukkit.Particle;
+import life.grass.grassplayer.timer.StaminaExhaustingTimer;
+import life.grass.grassplayer.timer.StaminaRecoveringTimer;
+import life.grass.grassplayer.timer.StaminaRowingTimer;
+import life.grass.grassplayer.timer.StaminaRunningTimer;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
-
-import java.util.Arrays;
 
 public final class Main extends JavaPlugin {
     private static Main instance;
@@ -41,8 +41,6 @@ public final class Main extends JavaPlugin {
     private void registerSchedulers() {
         BukkitScheduler scheduler = this.getServer().getScheduler();
 
-        scheduler.runTaskTimer(this, new ManaShowingTimer(), 0, 4);
-        scheduler.runTaskTimer(this, new ManaVaporizingTimer(), 0, 30);
         scheduler.runTaskTimer(this, new StaminaExhaustingTimer(), 0, 10);
         scheduler.runTaskTimer(this, new StaminaRecoveringTimer(), 0, 10);
         scheduler.runTaskTimer(this, new StaminaRowingTimer(), 0, 10);
